@@ -16,8 +16,14 @@ case $1 in
     g++)
         g++ -o $bin -ansi -fno-asm -O2 -Wall -lm -static -DONLINE_JUDGE $src $main >/dev/null
         ;;
-    c++0x)
-        g++ -o $bin -std=gnu++0x -fno-asm -O2 -Wall -lm -static -DONLINE_JUDGE $src $main >/dev/null
+    c++1y)
+        g++ -o $bin -std=gnu++1y -fno-asm -O2 -Wall -lm -static -DONLINE_JUDGE $src $main >/dev/null
+        ;;
+    gfortran)
+        gfortran -o $bin -O2 -Wall  -static -DONLINE_JUDGE $src $main >/dev/null
+        ;;
+    gdc)
+        gdc -o $bin -O2 -Wall -static -DONLINE_JUDGE $src $main > /dev/null
         ;;
     fpc)
         if ! [[ $main = "" ]]; then
@@ -49,9 +55,13 @@ case $1 in
         fi
         exit 0
         ;;
-    python)
+    python2)
         echo >> $src
         pyflakes $src 1>&2
+        ;;
+    python3)
+        echo >> $src
+        pyflakes3 $src 1>&2
         ;;
     perl)
         exit 0
@@ -61,6 +71,26 @@ case $1 in
         ;;
     php)
         exit 0
+        ;;
+    ghc)
+		ghc -o $bin -O -W --make -static $src > /dev/null
+        ;;
+    ocamlopt)
+		ocamlopt -o $bin -unsafe -warn-help $src > /dev/null
+        ;;
+    rustc)
+        rustc -o $bin -O -W $src > /dev/null
+        if [[ -f $bin ]]; then
+            exit 0
+        fi
+        exit 1
+        ;;
+    go)
+        go build $src -o $bin -buildmode=exe > /dev/null
+        if [[ -f $bin ]]; then
+            exit 0
+        fi
+        exit 1
         ;;
     brainfuck)
         if ! bf2c $src > "$src.c"; then

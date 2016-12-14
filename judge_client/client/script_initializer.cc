@@ -53,8 +53,36 @@ namespace {
             loader_string = StringPrintf("%s/PythonLoader.py", ARG_root.c_str());
             memory_limit_str = StringPrintf("%d", runner->GetMemoryLimit());
 
-            commands[0] = "/usr/bin/python";
-            commands[1] = "python";
+            commands[0] = "/usr/bin/python2";
+            commands[1] = "python2";
+            commands[2] = "-B";
+            commands[3] = loader_string.c_str();
+            commands[4] = memory_limit_str.c_str();
+            commands[5] = "p.py";
+            commands[6] = NULL;
+
+            runner->SetCommands(commands);
+            runner->SetLoaderSyscallMagic(__NR_setrlimit, 2);
+        };
+    };
+
+    class Python3ScriptInitializer : public ScriptInitializer {
+    private:
+        string loader_string;
+        string memory_limit_str;
+        const char* commands[7];
+
+    public:
+        Python3ScriptInitializer() : ScriptInitializer(10) {};
+
+        virtual ScriptInitializer* clone() { return new PythonScriptInitializer(); };
+
+        virtual void SetUp(ScriptRunner* runner) {
+            loader_string = StringPrintf("%s/PythonLoader.py", ARG_root.c_str());
+            memory_limit_str = StringPrintf("%d", runner->GetMemoryLimit());
+
+            commands[0] = "/usr/bin/python3";
+            commands[1] = "python3";
             commands[2] = "-B";
             commands[3] = loader_string.c_str();
             commands[4] = memory_limit_str.c_str();
