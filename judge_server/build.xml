@@ -59,7 +59,7 @@
     <property name="junit.jar" value="${libdir}/${junit.jar.name}" />
 
     <!-- for deployment only -->
-    <property name="mysql_connector.jar.name" value="mysql-connector-java-3.1.10-bin.jar" />
+    <property name="mysql_connector.jar.name" value="mysql-connector-java-5.1.40-bin.jar" />
     <property name="mysql_connector.jar" value="${libdir}/${mysql_connector.jar.name}" />
     <property name="antlr.jar.name" value="antlr.jar" />
     <property name="antlr.jar" value="${libdir}/${antlr.jar.name}" />
