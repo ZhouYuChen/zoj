@@ -24,6 +24,7 @@ fi
 CreateDir "$dir" 755
 cp script/start.sh "$dir"
 cp script/stop.sh "$dir"
+cp script/run.sh "$dir"/script
 cp script/rotate_log.sh "$dir"
 CreateDir "$dir/script" 755
 cp script/compile.sh "$dir"/script
