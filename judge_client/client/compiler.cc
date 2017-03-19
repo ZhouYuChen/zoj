@@ -50,18 +50,12 @@ struct CompilerInfo {
     {2, "g++", "p.cc"},
     {3, "fpc", "p.pas"},
     {4, "javac", "Main.java"},
-    {5, "python2", "p.py"},
+    {5, "python", "p.py"},
     {6, "perl", "p.pl"},
     {7, "scheme", "p.scm"},
     {8, "php", "p.php"},
-    {9, "c++1y", "p.cxx"},
-    {10, "python3", "p.py3"},
-	{11, "gfortran", "p.f08"},
-	{12, "rustc", "p.rs"},
-	{13, "go", "p.go"},
-	{14, "gdc", "p.d"},
-	{15, "ghc", "p.hs"},
-	{16, "ocamlopt", "p.ml"}
+    {9, "c++0x", "p.cxx"},
+    {10, "brainfuck", "p.bf"}
 };
 
 }
